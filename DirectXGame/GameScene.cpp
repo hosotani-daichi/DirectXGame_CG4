@@ -9,8 +9,6 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
-	//モデルの初期化
-	Model* model = new Model();
 	// 3Dモデルデータの生成
 	modelParticle_ = Model::CreateSphere(4, 4);
 	// カメラの初期化
@@ -18,7 +16,7 @@ void GameScene::Initialize() {
 	// パーティクルの生成
 	particle_ = new Particle();
 	//パーティクルの初期化
-	particle_->Initialize(model);
+	particle_->Initialize(modelParticle_);
 }
 
 void GameScene::Update() {
