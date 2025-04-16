@@ -38,7 +38,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PostDraw();
 	}
 
-		// ゲームシーンの解放
+	// ゲームシーンの解放
 	delete gameScene;
 	// nullptrの代入
 	gameScene = nullptr;
