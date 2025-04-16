@@ -17,10 +17,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	GameScene* gameScene = new GameScene();
 	// ゲームシーンの初期化
 	gameScene->Initialize();
-	// ゲームシーンの解放
-	delete gameScene;
-	// nullptrの代入
-	gameScene = nullptr;
 
 	// メインループ
 	while (true) {
@@ -41,6 +37,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		// 描画終了
 		dxCommon->PostDraw();
 	}
+
+		// ゲームシーンの解放
+	delete gameScene;
+	// nullptrの代入
+	gameScene = nullptr;
 
 	// エンジンの終了処理
 	KamataEngine::Finalize();
