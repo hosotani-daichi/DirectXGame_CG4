@@ -18,6 +18,9 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		if (KamataEngine::Update()) {
 			break;
 		}
+
+
+
 		//描画開始
 		dxCommon->PreDraw();
 

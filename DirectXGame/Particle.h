@@ -10,7 +10,7 @@ public:
 
 	void Initialize(Model*model);
 	void Update();
-	void Draw();
+	void Draw(Camera& camera);
 
 private:
 
