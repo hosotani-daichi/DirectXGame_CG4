@@ -6,7 +6,7 @@ using namespace MathUtility;
 
 std::random_device seedGenerator;
 std::mt19937 randomEngine(seedGenerator());
-std::uniform_real_distribution<float> distribution(-0.5f, 0.5f);
+std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
 // デストラクタ
 GameScene::~GameScene() {
@@ -30,7 +30,6 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 
 	for (Particle* particle : particles_) {
-
 		// パーティクルの更新
 		particle->Update();
 	}
