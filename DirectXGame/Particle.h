@@ -9,7 +9,7 @@ class Particle {
 public:
 
 	~Particle();
-	void Initialize(Model*model,Vector3 position);
+	void Initialize(Model*model,Vector3 position,Vector3 velocity);
 	void Update();
 	void Draw(Camera& camera);
 
@@ -25,5 +25,7 @@ private:
 	Vector4 color_;
 	// パーティクル　
 	std::list<Particle*> particles_;
+	//移動量
+	Vector3 velocity_;
 
 };
