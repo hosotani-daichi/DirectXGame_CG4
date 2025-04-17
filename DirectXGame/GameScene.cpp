@@ -17,6 +17,8 @@ GameScene::~GameScene() {
 	}
 }
 
+
+
 void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
@@ -25,24 +27,8 @@ void GameScene::Initialize() {
 	camera_.Initialize();
 	// 発生位置は乱数
 	Vector3 position = {distribution(randomEngine) * 30.0f, distribution(randomEngine) * 20.0f, 0};
-
-	// パーティクルの生成
-	for (int i = 0; i < 150; i++) {
-		// 生成
-		Particle* particle = new Particle();
-		// 移動量
-		Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
-		// 位置
-		Vector3 localposition = {0.0, 0.0f, 0.0f};
-		// パーティクルの初期化
-		particle->Initialize(modelParticle_, localposition, velocity);
-		// リストに追加
-		particles_.push_back(particle);
-
-		Normalize(velocity);
-		velocity *= distribution(randomEngine);
-		velocity *= 0.1f;
-	}
+	//パーティクル発生
+	ParticleBorn(position);
 }
 
 void GameScene::Update() {
@@ -76,3 +62,45 @@ void GameScene::Draw() {
 	// 3Dモデル描画処理
 	Model::PostDraw();
 }
+
+void GameScene::ParticleBorn(Vector3 position) {
+
+			// パーティクルの生成
+	for (int i = 0; i < 150; i++) {
+		// 生成
+		Particle* particle = new Particle();
+		// 移動量
+		Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
+		// 位置
+		Vector3 localposition = {0.0, 0.0f, 0.0f};
+		// パーティクルの初期化
+		particle->Initialize(modelParticle_, localposition, velocity);
+		// リストに追加
+		particles_.push_back(particle);
+
+		Normalize(velocity);
+		velocity *= distribution(randomEngine);
+		velocity *= 0.1f;
+	}
+}
+
+//void Particle::ParticleBorn() {
+//
+//		// パーティクルの生成
+//	for (int i = 0; i < 150; i++) {
+//		// 生成
+//		Particle* particle = new Particle();
+//		// 移動量
+//		Vector3 velocity = {distribution(randomEngine), distribution(randomEngine), 0};
+//		// 位置
+//		Vector3 localposition = {0.0, 0.0f, 0.0f};
+//		// パーティクルの初期化
+//		particle->Initialize(modelParticle_, localposition, velocity);
+//		// リストに追加
+//		particles_.push_back(particle);
+//
+//		Normalize(velocity);
+//		velocity *= distribution(randomEngine);
+//		velocity *= 0.1f;
+//	}
+//}
