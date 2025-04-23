@@ -11,7 +11,7 @@ GameScene::~GameScene() {
 void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
-	modelEffect_ = Model::CreateSphere(4, 4);////////SphereをEffectに変えるためにEffectを制作する
+	modelEffect_ = Model::CreateEffect(4, 4); ////////SphereをEffectに変えるためにEffectを制作する
 	// カメラの初期化
 	camera_.Initialize();
 	// 菱形の生成
