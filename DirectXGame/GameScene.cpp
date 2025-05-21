@@ -44,7 +44,7 @@ void GameScene::Update() {
 		ParticleBorn(randomPosition);
 	}
 
-		for (Particle* particle : particles_) {
+	for (Particle* particle : particles_) {
 		// パーティクルの更新
 		particle->Update();
 	}
