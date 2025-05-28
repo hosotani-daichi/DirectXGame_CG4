@@ -43,10 +43,6 @@ void Effect::Update() {
 		isFinished_ = true;
 	}
 
-	// 色変更オブジェクトに色の数値を設定する
-	objectColor_.SetColor(color_);
-	// フェード処理
-	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
 	// 行列を定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }
