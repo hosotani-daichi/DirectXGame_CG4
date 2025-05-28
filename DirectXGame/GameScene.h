@@ -15,6 +15,6 @@ private:
 	Model* modelEffect_ = nullptr;
 	// カメラ
 	Camera camera_;
-	// 菱形
-	Effect* effect_ = nullptr;
+	// エフェクト
+	std::list<Effect*> effectes_;
 };

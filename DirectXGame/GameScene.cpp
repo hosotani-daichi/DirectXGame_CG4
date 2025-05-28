@@ -4,26 +4,38 @@ using namespace KamataEngine;
 
 GameScene::~GameScene() {
 
+	// エフェクトの解放
+	for (Effect* effect : effectes_) {
+		delete effect;
+	}
 	delete modelEffect_;
-	delete effect_;
 }
 
 void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
-	modelEffect_ = Model::CreateFromOBJ("Plane"); 
+	modelEffect_ = Model::CreateFromOBJ("Plane");
 	// カメラの初期化
 	camera_.Initialize();
-	// 菱形の生成
-	effect_ = new Effect();
-	// 菱形の初期化
-	effect_->Initialize(modelEffect_);
+
+	for (int i = 0; i < 10; i++) {
+		// 生成
+		Effect* effect = new Effect();
+		// 位置
+		Vector3 pos = Vector3(0.0f, 0.0f, 0.0f);
+		// 初期化
+		effect->Initialize(modelEffect_);
+		// リストに追加
+		effectes_.push_back(effect);
+	}
 }
 
 void GameScene::Update() {
 
 	// 菱形の更新
-	effect_->Update();
+	for (Effect* effect : effectes_) {
+		effect->Update();
+	}
 }
 
 void GameScene::Draw() {
@@ -33,7 +45,9 @@ void GameScene::Draw() {
 	// 3Dモデル描画処理
 	Model::PreDraw(dxCommon->GetCommandList());
 	// 菱形の描画
-	effect_->Draw(camera_);
+	for (Effect* effect : effectes_) {
+		effect->Draw(camera_);
+	}
 	// 3Dモデル描画処理
 	Model::PostDraw();
 }
