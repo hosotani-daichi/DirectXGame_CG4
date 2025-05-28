@@ -11,7 +11,7 @@ GameScene::~GameScene() {
 void GameScene::Initialize() {
 
 	// 3Dモデルデータの生成
-	modelEffect_ = Model::CreateFromOBJ("Plane"); 
+	modelEffect_ = Model::CreateFromOBJ("Plane");
 	// カメラの初期化
 	camera_.Initialize();
 	// 菱形の生成
