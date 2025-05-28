@@ -24,7 +24,7 @@ void GameScene::Initialize() {
 		// 位置
 		Vector3 pos = Vector3(0.0f, 0.0f, 0.0f);
 		// 初期化
-		effect->Initialize(modelEffect_);
+		effect->Initialize(modelEffect_,pos);
 		// リストに追加
 		effectes_.push_back(effect);
 	}
