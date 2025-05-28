@@ -6,7 +6,7 @@ using namespace KamataEngine;
 class Effect {
 
 public:
-	void Initialize(Model* model, Vector3 pos);
+	void Initialize(Model* model, Vector3 pos, Vector4 color);
 	void Update();
 	void Draw(Camera& camera);
 	bool IsFinished();
@@ -26,5 +26,6 @@ private:
 	float counter_ = 0.0f;
 	// 存在時間(消滅までの時間)<秒>
 	const float kDuration = 1.0f;
-
+	// 移動速度
+	float moveSpeed_ = 0.1f;
 };

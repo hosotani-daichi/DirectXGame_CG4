@@ -1,11 +1,12 @@
 #include "Effect.h"
 #include <random>
-std::random_device seed_Generator;
-std::mt19937 RandomEngine(seed_Generator());
-std::uniform_real_distribution<float> RandomSize(0.0f, 1.0f);
-std::uniform_real_distribution<float> RandomRotation(-1.0f, 1.0f);
 
-void Effect::Initialize(Model* model, Vector3 pos) {
+void Effect::Initialize(Model* model, Vector3 pos, Vector4 color) {
+
+	std::random_device seed_Generator;
+	std::mt19937 RandomEngine(seed_Generator());
+	std::uniform_real_distribution<float> RandomSize(0.0f, 1.0f);
+	std::uniform_real_distribution<float> RandomRotation(-1.0f, 1.0f);
 
 	// NULLポインタチェック
 	assert(model);
@@ -18,10 +19,14 @@ void Effect::Initialize(Model* model, Vector3 pos) {
 	worldTransform_.translation_ = pos;
 	// 色の初期化
 	objectColor_.Initialize();
-	color_ = Vector4(1, 1, 1, 1);
+	color_ = color;
 }
 
 void Effect::Update() {
+
+	worldTransform_.rotation_.y += moveSpeed_;
+	worldTransform_.translation_.x += moveSpeed_;
+	worldTransform_.translation_.y += moveSpeed_;
 
 	// 終了なら何もしない
 	if (isFinished_) {

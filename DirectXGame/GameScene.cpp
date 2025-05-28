@@ -1,6 +1,12 @@
 #include "GameScene.h"
+#include <random>
 
 using namespace KamataEngine;
+
+std::random_device seed_Generator;
+std::mt19937 RandomEngine(seed_Generator());
+std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+std::uniform_real_distribution<float> RandomFloat(-1.0f, 1.0f);
 
 GameScene::~GameScene() {
 
@@ -17,25 +23,31 @@ void GameScene::Initialize() {
 	modelEffect_ = Model::CreateFromOBJ("Plane");
 	// カメラの初期化
 	camera_.Initialize();
-
-	for (int i = 0; i < 10; i++) {
-		// 生成
-		Effect* effect = new Effect();
-		// 位置
-		Vector3 pos = Vector3(0.0f, 0.0f, 0.0f);
-		// 初期化
-		effect->Initialize(modelEffect_,pos);
-		// リストに追加
-		effectes_.push_back(effect);
-	}
+	// 乱数の初期化
+	srand((unsigned)time(NULL));
 }
 
 void GameScene::Update() {
+
+		if (rand() % 20 == 0) {
+		Vector3 pos = Vector3(RandomFloat(RandomEngine) * 30.0f, RandomFloat(RandomEngine) * 20.0f, 0);
+		Vector4 color = Vector4(distribution(RandomEngine), distribution(RandomEngine), distribution(RandomEngine), 1.0f);
+		EffectBorn(pos, color);
+	}
 
 	// 菱形の更新
 	for (Effect* effect : effectes_) {
 		effect->Update();
 	}
+
+	// 終了フラグが立ったエフェクトを削除
+	effectes_.remove_if([](Effect* effect) {
+		if (effect->IsFinished()) {
+			delete effect;
+			return true;
+		}
+		return false;
+	});
 }
 
 void GameScene::Draw() {
@@ -50,4 +62,15 @@ void GameScene::Draw() {
 	}
 	// 3Dモデル描画処理
 	Model::PostDraw();
+}
+
+void GameScene::EffectBorn(Vector3 pos, Vector4 color) {
+	for (int i = 0; i < 10; i++) {
+		// 生成
+		Effect* effect = new Effect();
+		//  初期化
+		effect->Initialize(modelEffect_, pos, color);
+		// リストに追加
+		effectes_.push_back(effect);
+	}
 }

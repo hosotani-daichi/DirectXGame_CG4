@@ -9,6 +9,7 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+	void EffectBorn(KamataEngine::Vector3 pos, KamataEngine::Vector4 color);
 
 private:
 	// 菱形3Dモデルデータ
