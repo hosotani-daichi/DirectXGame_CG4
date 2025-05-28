@@ -18,4 +18,5 @@ private:
 	Camera camera_;
 	// エフェクト
 	std::list<Effect*> effectes_;
+
 };
