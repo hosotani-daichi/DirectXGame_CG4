@@ -1,6 +1,6 @@
 #pragma once
-#include "KamataEngine.h"
 #include "Effect.h"
+#include "KamataEngine.h"
 
 class GameScene {
 
@@ -18,5 +18,4 @@ private:
 	Camera camera_;
 	// エフェクト
 	std::list<Effect*> effectes_;
-
 };

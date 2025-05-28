@@ -29,7 +29,7 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 
-		if (rand() % 20 == 0) {
+	if (rand() % 20 == 0) {
 		Vector3 pos = Vector3(RandomFloat(RandomEngine) * 30.0f, RandomFloat(RandomEngine) * 20.0f, 0);
 		Vector4 color = Vector4(distribution(RandomEngine), distribution(RandomEngine), distribution(RandomEngine), 1.0f);
 		EffectBorn(pos, color);
@@ -68,7 +68,7 @@ void GameScene::EffectBorn(Vector3 pos, Vector4 color) {
 	for (int i = 0; i < 10; i++) {
 		// 生成
 		Effect* effect = new Effect();
-		//  初期化
+		// 初期化
 		effect->Initialize(modelEffect_, pos, color);
 		// リストに追加
 		effectes_.push_back(effect);
