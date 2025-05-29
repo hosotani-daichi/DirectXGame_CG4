@@ -1,5 +1,6 @@
 #include "Effect.h"
 #include <random>
+#include <cassert>
 
 void Effect::Initialize(Model* model, Vector3 pos, Vector4 color) {
 
