@@ -9,10 +9,6 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
-	// 3Dモデルデータの生成
-
-	// カメラの初期化
-	camera_.Initialize();
 	Model2::StaticInitialize();
 }
 

@@ -11,7 +11,5 @@ public:
 	void Draw();
 
 private:
-	// カメラ
-	Camera camera_;
 
 };
