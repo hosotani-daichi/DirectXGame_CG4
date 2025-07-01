@@ -1,12 +1,10 @@
 #pragma once
-#include "KamataEngine.h"
 #include "Model2/Model2.h"
+#include "KamataEngine.h"
 
 // ゲームシーン
 class GameScene {
-
 public:
-
 	// コンストラクタ
 	GameScene();
 	// デストラクタ
@@ -19,14 +17,16 @@ public:
 	void Draw();
 
 private:
-
+private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
+
 	KamataEngine::Model2* model_ = nullptr;
 	uint32_t model2Handle_;
 
 	KamataEngine::Model2* model = nullptr;
+
 	KamataEngine::WorldTransform worldTransform_;
 
 	// カメラの初期化
