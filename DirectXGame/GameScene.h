@@ -20,8 +20,8 @@ private:
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
 	KamataEngine::Audio* audio_ = nullptr;
-
 	KamataEngine::Model2* model_ = nullptr;
+
 	uint32_t model2Handle_;
 
 	KamataEngine::Model2* model = nullptr;
