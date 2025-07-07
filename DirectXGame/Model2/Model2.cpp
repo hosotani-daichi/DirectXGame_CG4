@@ -614,26 +614,25 @@ void Model2::Draw(const WorldTransform& worldTransform, const Camera& camera, co
 	}
 }
 
-void Model2::Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHadle, const ObjectColor* objectColor) {
-
+void Model2::Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHandle, const ObjectColor* objectColor) {
 	ModelCommon2* common = ModelCommon2::GetInstance();
 
-	// ライトコマンドを積む
+	// ライトなどコマンドセット
 	common->LightCommand(lightGroup_);
-
-	// トランスフォームコマンドを積む
 	common->TransformCommand(worldTransform, camera);
 
-	// オブジェクトアルファのコマンドを積む
 	const ObjectColor* useObjectColor = common->GetObjectColor();
 	if (objectColor) {
 		useObjectColor = objectColor;
 	}
 	useObjectColor->SetGraphicsCommand(common->GetCommandList(), (UINT)RoomParameter::kObjectColor);
 
-	// 全メッシュを描画
+	// メッシュを描画
 	for (auto& mesh : meshes_) {
-		mesh->Draw(common->GetCommandList(), (UINT)RoomParameter::kMaterial, (UINT)RoomParameter::kTexture, textureHadle);
+		// ✅ テクスチャバインド（重要）
+		TextureManager::GetInstance()->SetGraphicsRootDescriptorTable(common->GetCommandList(), textureHandle, (UINT)RoomParameter::kTexture);
+
+		mesh->Draw(common->GetCommandList(), (UINT)RoomParameter::kMaterial, (UINT)RoomParameter::kTexture);
 	}
 }
 

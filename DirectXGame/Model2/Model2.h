@@ -172,7 +172,7 @@ public: // メンバ関数
 	/// <param name="camera">カメラ</param>
 	/// <param name="textureHadle">テクスチャハンドル</param>
 	/// <param name="objectColor">オブジェクトカラー</param>
-	void Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHadle, const ObjectColor* objectColor = nullptr);
+	void Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHandle, const ObjectColor* objectColor = nullptr);
 
 	/// <summary>
 	/// メッシュコンテナを取得

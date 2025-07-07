@@ -8,8 +8,6 @@ GameScene::~GameScene() {
 	Model2::StaticFinalize();
 
 	delete model_;
-
-	// カメラの解放
 	delete camera_;
 	camera_ = nullptr;
 }
@@ -28,9 +26,14 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 
+	// モデル共通初期化
 	Model2::StaticInitialize();
-	model2Handle_ = TextureManager::Load("./Resources/uvChecker.png");
-	model_ = Model2::CreateFromOBJ("Panel", true);
+
+	// モデルの生成（正方形）
+	model_ = Model2::CreateSquare();
+
+	// テクスチャの読み込み
+	model2Handle_ = TextureManager::Load("Resources/uvChecker.png");
 }
 
 void GameScene::Update() { worldTransform_.UpdateMatrix(); }
@@ -41,43 +44,22 @@ void GameScene::Draw() {
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 
 #pragma region 背景スプライト描画
-	// 背景スプライト描画前処理
 	Sprite::PreDraw(commandList);
-
-	/// <summary>
-	/// ここに背景スプライトの描画処理を追加できる
-	/// </summary>
-
-	// スプライト描画後処理
 	Sprite::PostDraw();
-	// 深度バッファクリア
 	dxCommon_->ClearDepthBuffer();
 #pragma endregion
 
 #pragma region 3Dオブジェクト描画
-	// 3Dオブジェクト描画前処理
 	Model2::PreDraw(commandList);
 
-	/// <summary>
-	/// ここに3Dオブジェクトの描画処理を追加できる
-	/// </summary>
-
+	// モデル描画
 	model_->Draw(worldTransform_, *camera_, model2Handle_);
 
-	// 3Dオブジェクト描画後処理
 	Model2::PostDraw();
 #pragma endregion
 
 #pragma region 前景スプライト描画
-	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
-
-	/// <summary>
-	/// ここに前景スプライトの描画処理を追加できる
-	/// </summary>
-
-	// スプライト描画後処理
 	Sprite::PostDraw();
-
 #pragma endregion
 }

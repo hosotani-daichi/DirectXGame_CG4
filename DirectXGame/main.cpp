@@ -3,15 +3,17 @@
 #include <Windows.h>
 
 using namespace KamataEngine;
+
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
+
 	// エンジンの初期化
-	Initialize(L"LE3C_22_ホソタニ_ダイチ");
+	KamataEngine::Initialize(L"LE3C_22_ホソタニ_ダイチ");
 
 	// DirectXCommonインスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	// ゲームシーンの生成
+	// ゲームシーンのインスタンス生成
 	GameScene* gameScene = new GameScene();
 	// ゲームシーンの初期化
 	gameScene->Initialize();
@@ -19,7 +21,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 	// メインループ
 	while (true) {
 		// エンジンの更新
-		if (Update()) {
+		if (KamataEngine::Update()) {
 			break;
 		}
 
@@ -29,8 +31,6 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		// 描画開始
 		dxCommon->PreDraw();
 
-		// ここに描画処理を記述する
-
 		// ゲームシーンの描画
 		gameScene->Draw();
 
@@ -38,12 +38,13 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		dxCommon->PostDraw();
 	}
 
-	delete gameScene;
 	// ゲームシーンの解放
+	delete gameScene;
+	// nullptrの代入
 	gameScene = nullptr;
 
 	// エンジンの終了処理
-	Finalize();
+	KamataEngine::Finalize();
 
 	return 0;
 }

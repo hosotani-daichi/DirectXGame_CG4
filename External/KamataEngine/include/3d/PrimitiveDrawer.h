@@ -1,10 +1,10 @@
 #pragma once
 #include <3d\Camera.h>
-#include <math\Vector3.h>
-#include <math\Vector4.h>
 #include <array>
 #include <cstdint>
 #include <d3d12.h>
+#include <math\Vector3.h>
+#include <math\Vector4.h>
 #include <memory>
 #include <string>
 #include <wrl.h>
