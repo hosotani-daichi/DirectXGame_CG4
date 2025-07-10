@@ -22,12 +22,10 @@ private:
 	KamataEngine::Audio* audio_ = nullptr;
 	KamataEngine::Model2* model_ = nullptr;
 
-	uint32_t model2Handle_;
-
-	KamataEngine::Model2* model = nullptr;
+	uint32_t model2Handle_ = 0;
 
 	KamataEngine::WorldTransform worldTransform_;
 
 	// カメラの初期化
-	KamataEngine::Camera* camera_;
+	KamataEngine::Camera* camera_ = nullptr;
 };

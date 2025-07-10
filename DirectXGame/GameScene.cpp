@@ -33,7 +33,7 @@ void GameScene::Initialize() {
 	model_ = Model2::CreateSquare();
 
 	// テクスチャの読み込み
-	model2Handle_ = TextureManager::Load("Resources/uvChecker.png");
+	model2Handle_ = TextureManager::Load("uvChecker.png");
 }
 
 void GameScene::Update() { worldTransform_.UpdateMatrix(); }
