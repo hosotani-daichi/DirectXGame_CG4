@@ -4,6 +4,7 @@
 
 // ゲームシーン
 class GameScene {
+
 public:
 	// コンストラクタ
 	GameScene();
@@ -23,7 +24,6 @@ private:
 	KamataEngine::Model2* model_ = nullptr;
 
 	uint32_t model2Handle_ = 0;
-
 	KamataEngine::WorldTransform worldTransform_;
 
 	// カメラの初期化
