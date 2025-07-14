@@ -164,12 +164,8 @@ Model2* Model2::CreateSquare() {
 	vertices[3].normal = {0.0f, 0.0f, -1.0f};
 
 	// インデックス
-	indices[0] = 0;
-	indices[1] = 1;
-	indices[2] = 2;
-	indices[3] = 1;
-	indices[4] = 3;
-	indices[5] = 2;
+	indices[0] = 0;indices[1] = 1;indices[2] = 2;
+	indices[3] = 1;indices[4] = 3;indices[5] = 2;
 
 	instance->InitializeFromVertices(vertices, indices);
 
