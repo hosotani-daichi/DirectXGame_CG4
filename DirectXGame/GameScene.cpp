@@ -30,7 +30,7 @@ void GameScene::Initialize() {
 	Model2::StaticInitialize();
 
 	// モデルの生成（正方形）
-	model_ = Model2::CreateSquare();
+	model_ = Model2::Create();
 
 	// テクスチャの読み込み
 	model2Handle_ = TextureManager::Load("uvChecker.png");
