@@ -32,6 +32,9 @@ void GameScene::Initialize() {
 	// モデルの生成（正方形）
 	model_ = Model2::CreateSquare();
 
+	//モデルリング
+	model_ = Model2::CreateRing(64, 2.0f, 3.0f);
+
 	// テクスチャの読み込み
 	model2Handle_ = TextureManager::Load("uvChecker.png");
 }

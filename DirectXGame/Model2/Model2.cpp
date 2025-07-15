@@ -183,6 +183,71 @@ Model2* Model2::CreateSquare() {
 	return instance;
 }
 
+Model2* Model2::CreateRing(uint32_t division, float innerRadius, float outerRadius) {
+	Model2* instance = new Model2;
+
+	using Vertex = Mesh::VertexPosNormalUv;
+	std::vector<Vertex> vertices;
+	std::vector<uint32_t> indices;
+
+	const float kTwoPi = std::numbers::pi_v<float> * 2.0f;
+
+	// 角度間隔
+	float angleStep = kTwoPi / float(division);
+
+	for (uint32_t i = 0; i < division; ++i) {
+		float angle = angleStep * i;
+		float nextAngle = angleStep * (i + 1);
+
+		// 今の角度
+		float x0_outer = -std::cos(angle) * outerRadius;
+		float y0_outer = std::sin(angle) * outerRadius;
+		float x0_inner = -std::cos(angle) * innerRadius;
+		float y0_inner = std::sin(angle) * innerRadius;
+
+		// 次の角度
+		float x1_outer = -std::cos(nextAngle) * outerRadius;
+		float y1_outer = std::sin(nextAngle) * outerRadius;
+		float x1_inner = -std::cos(nextAngle) * innerRadius;
+		float y1_inner = std::sin(nextAngle) * innerRadius;
+
+		uint32_t baseIndex = static_cast<uint32_t>(vertices.size());
+
+		// 頂点追加（左上・左下・右上・右下の順）
+		vertices.push_back({
+		    {x0_inner, y0_inner, 0.0f},
+            {0, 0, -1},
+            {float(i) / division, 1.0f}
+        }); // 内側（今）
+		vertices.push_back({
+		    {x0_outer, y0_outer, 0.0f},
+            {0, 0, -1},
+            {float(i) / division, 0.0f}
+        }); // 外側（今）
+		vertices.push_back({
+		    {x1_inner, y1_inner, 0.0f},
+            {0, 0, -1},
+            {float(i + 1) / division, 1.0f}
+        }); // 内側（次）
+		vertices.push_back({
+		    {x1_outer, y1_outer, 0.0f},
+            {0, 0, -1},
+            {float(i + 1) / division, 0.0f}
+        }); // 外側（次）
+
+		// インデックス（2三角形で1四角形）
+		indices.push_back(baseIndex + 0);
+		indices.push_back(baseIndex + 1);
+		indices.push_back(baseIndex + 2);
+		indices.push_back(baseIndex + 2);
+		indices.push_back(baseIndex + 1);
+		indices.push_back(baseIndex + 3);
+	}
+
+	instance->InitializeFromVertices(vertices, indices);
+	return instance;
+}
+
 void Model2::PreDraw(ID3D12GraphicsCommandList* commandList) { ModelCommon2::GetInstance()->PreDraw(commandList); }
 
 void Model2::PostDraw() { ModelCommon2::GetInstance()->PostDraw(); }

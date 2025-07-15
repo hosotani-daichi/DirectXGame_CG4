@@ -143,6 +143,12 @@ public: // 静的メンバ関数
 	/// <returns></returns>
 	static Model2* CreateSquare();
 
+    /// <summary>
+	/// リング生成
+	/// </summary>
+	/// <returns></returns>
+	static Model2* CreateRing(uint32_t division, float innerRadius, float outerRadius);
+
 	/// <summary>
 	/// 描画前処理
 	/// </summary>
