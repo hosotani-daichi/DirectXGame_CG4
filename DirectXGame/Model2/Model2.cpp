@@ -131,44 +131,55 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
-Model2* Model2::CreateSquare(int num) {
+Model2* Model2::CreateSquare() {
 
-	// メモリ確保
+// メモリ確保
 	Model2* instance = new Model2;
-	std::vector<Mesh::VertexPosNormalUv> vertices;
-	std::vector<uint32_t> indices;
 
-	// 頂点数
-	const uint32_t kNumVertices = 4;
-	// インデックス数
-	const uint32_t kNumIndices = 6;
+	// 四角形1つあたりの頂点数とインデックス数
+	const uint32_t kNumVerticesPerQuad = 4;
+	const uint32_t kNumIndicesPerQuad = 6;
+	const uint32_t quadCount = 5; // 四角形の数
 
-	vertices.resize(kNumVertices);
-	indices.resize(kNumIndices);
+	std::vector<Mesh::VertexPosNormalUv> vertices(kNumVerticesPerQuad * quadCount);
+	std::vector<uint32_t> indices(kNumIndicesPerQuad * quadCount);
 
-	// 左下
-	vertices[0].pos = {0.0f, 2.0f, 0.0f};
-	vertices[0].uv = {0.0f, 1.0f};
-	vertices[0].normal = {0.0f, 0.0f, -1.0f};
-	// 左上
-	vertices[1].pos = {0.0f, -2.0f, 0.0f};
-	vertices[1].uv = {0.0f, 0.0f};
-	vertices[1].normal = {0.0f, 0.0f, -1.0f};
-	// 右下
-	vertices[2].pos = {5.0f * static_cast<float>(num), 2.0f, 0.0f};
-	vertices[2].uv = {1.0f * static_cast<float>(num), 0.0f};
-	vertices[2].normal = {0.0f, 0.0f, -1.0f};
-	// 右上
-	vertices[3].pos = {5.0f * static_cast<float>(num), -2.0f, 0.0f};
-	vertices[3].uv = {1.0f * static_cast<float>(num), 1.0f};
-	vertices[3].normal = {0.0f, 0.0f, -1.0f};
+	for (uint32_t i = 0; i < quadCount; ++i) {
+		float offsetX = i * 5.0f;  // 四角形間の距離（調整可）
+		uint32_t vertexStart = i * kNumVerticesPerQuad;
+		uint32_t indexStart = i * kNumIndicesPerQuad;
 
-	// インデックス
-	indices[0] = 1;indices[1] = 0;indices[2] = 2;
-	indices[3] = 2;indices[4] = 3;indices[5] = 1;
+		// 左下
+		vertices[vertexStart + 0].pos = {offsetX + 0.0f,  2.0f, 0.0f};
+		vertices[vertexStart + 0].uv = {0.0f, 1.0f};
+		vertices[vertexStart + 0].normal = {0.0f, 0.0f, -1.0f};
 
+		// 左上
+		vertices[vertexStart + 1].pos = {offsetX + 0.0f, -2.0f, 0.0f};
+		vertices[vertexStart + 1].uv = {0.0f, 0.0f};
+		vertices[vertexStart + 1].normal = {0.0f, 0.0f, -1.0f};
+
+		// 右下
+		vertices[vertexStart + 2].pos = {offsetX + 5.0f,  2.0f, 0.0f};
+		vertices[vertexStart + 2].uv = {1.0f, 1.0f};
+		vertices[vertexStart + 2].normal = {0.0f, 0.0f, -1.0f};
+
+		// 右上
+		vertices[vertexStart + 3].pos = {offsetX + 5.0f, -2.0f, 0.0f};
+		vertices[vertexStart + 3].uv = {1.0f, 0.0f};
+		vertices[vertexStart + 3].normal = {0.0f, 0.0f, -1.0f};
+
+		// インデックス設定（時計回り）
+		indices[indexStart + 0] = vertexStart + 1;
+		indices[indexStart + 1] = vertexStart + 0;
+		indices[indexStart + 2] = vertexStart + 2;
+		indices[indexStart + 3] = vertexStart + 2;
+		indices[indexStart + 4] = vertexStart + 3;
+		indices[indexStart + 5] = vertexStart + 1;
+	}
+
+	// モデル初期化
 	instance->InitializeFromVertices(vertices, indices);
-
 	return instance;
 }
 

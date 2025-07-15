@@ -141,7 +141,7 @@ public: // 静的メンバ関数
 	/// 四角形モデル生成
 	/// </summary>
 	/// <returns></returns>
-	static Model2* CreateSquare(int num);
+	static Model2* CreateSquare();
 
 	/// <summary>
 	/// 描画前処理
