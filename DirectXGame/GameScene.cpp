@@ -20,12 +20,9 @@ void GameScene::Initialize() {
 	camera_->Initialize();
 }
 
-// メンバー変数に追加
-int frameCount = 0;
 
 void GameScene::Update() {
 
-	frameCount++;
 	stage_.Update();
 
 	player_.Update();

@@ -17,5 +17,4 @@ private:
 	KamataEngine::Camera* camera_ = nullptr;
 	Stage stage_;
 	Player player_;
-	int frameCount = 0;
 };
