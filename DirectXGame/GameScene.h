@@ -1,5 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
+#include "Stage.h"
+
 class GameScene {
 public:
 
@@ -15,4 +17,5 @@ private:
 	uint32_t textureHandle_ = 0;
 	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
+	Stage stage_;
 };

@@ -12,9 +12,11 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
+	//背景ステージの初期化
+	stage_.Initialize();
+
 	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("Title.png");
-
 	// スプライトインスタンスの生成
 	sprite_ = Sprite::Create(textureHandle_, {0, 0});
 }
@@ -26,9 +28,10 @@ void GameScene::Update() {
 
 	frameCount++;
 
+	stage_.Update();
+
 	// sin波で上下に揺れるY座標を作る（±20ピクセル範囲で動かす）
 	float y = 20 * sin(frameCount * 0.05f);
-
 	// スプライトの位置を更新
 	sprite_->SetPosition({20.0f, y});
 }
@@ -39,6 +42,8 @@ void GameScene::Draw() {
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 	// スプライト描画前処理
 	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	stage_.Draw();
 
 	// スプライト点滅の描画処理
 	if (frameCount % 60 >= 30) {
