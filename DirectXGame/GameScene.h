@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Stage.h"
+#include "Player.h"
 
 class GameScene {
 public:
@@ -17,5 +18,8 @@ private:
 	uint32_t textureHandle_ = 0;
 	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
+	KamataEngine::Camera* camera_ = nullptr;
 	Stage stage_;
+	Player player_;
+	int frameCount = 0;
 };
