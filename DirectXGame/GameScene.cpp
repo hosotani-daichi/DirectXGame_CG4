@@ -44,7 +44,5 @@ void GameScene::Draw() {
 	// 3D描画
 	player_.Draw(*camera_);
 
-	Sprite::PreDraw(dxCommon->GetCommandList());
-
 	Sprite::PostDraw();
 }
