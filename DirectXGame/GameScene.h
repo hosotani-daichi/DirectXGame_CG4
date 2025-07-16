@@ -13,6 +13,8 @@ private:
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
+	uint32_t textureHandle2_ = 0;
 	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
+	KamataEngine::Sprite* sprite2_ = nullptr;
 };
