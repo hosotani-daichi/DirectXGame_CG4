@@ -1,31 +1,26 @@
 #pragma once
-#include "Model2/Model2.h"
 #include "KamataEngine.h"
-
-// ゲームシーン
 class GameScene {
-
 public:
-	// コンストラクタ
+	/// コンストクラタ
+	/// </summary>
 	GameScene();
-	// デストラクタ
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~GameScene();
 	// 初期化
 	void Initialize();
 	// 更新
 	void Update();
+
 	// 描画
 	void Draw();
 
 private:
-	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
-	KamataEngine::Input* input_ = nullptr;
-	KamataEngine::Audio* audio_ = nullptr;
-	KamataEngine::Model2* model_ = nullptr;
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0;
 
-	uint32_t model2Handle_ = 0;
-	KamataEngine::WorldTransform worldTransform_;
-
-	// カメラの初期化
-	KamataEngine::Camera* camera_ = nullptr;
+	// スプライト
+	KamataEngine::Sprite* sprite_ = nullptr;
 };

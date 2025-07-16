@@ -1,68 +1,49 @@
 #include "GameScene.h"
+#include <cmath> // sin関数に必要
 
 using namespace KamataEngine;
 
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-	Model2::StaticFinalize();
-
-	delete model_;
-	delete camera_;
-	camera_ = nullptr;
+	// デストラクタ
+	delete sprite_;
 }
 
 void GameScene::Initialize() {
-	// DirectXCommonインスタンスの取得
-	dxCommon_ = DirectXCommon::GetInstance();
-	// Inputインスタンスの取得
-	input_ = Input::GetInstance();
-	// Audioインスタンスの取得
-	audio_ = Audio::GetInstance();
 
-	worldTransform_.Initialize();
+	// ファイル名を指定してテクスチャを読み込む
+	textureHandle_ = TextureManager::Load("Title.png");
 
-	// カメラの初期化
-	camera_ = new Camera();
-	camera_->Initialize();
-
-	// モデル共通初期化
-	Model2::StaticInitialize();
-
-	// モデルの生成（正方形）
-	model_ = Model2::CreateSquare();
-
-	//モデルリング
-	model_ = Model2::CreateRing(32, 2.0f, 3.0f);
-
-	// テクスチャの読み込み
-	model2Handle_ = TextureManager::Load("uvChecker.png");
+	// スプライトインスタンスの生成
+	sprite_ = Sprite::Create(textureHandle_, {0, 0});
 }
 
-void GameScene::Update() { worldTransform_.UpdateMatrix(); }
+// メンバー変数に追加
+int frameCount = 0;
+
+void GameScene::Update() {
+
+	frameCount++;
+
+	// sin波で上下に揺れるY座標を作る（±20ピクセル範囲で動かす）
+	float y = 20 * sin(frameCount * 0.05f);
+
+	// スプライトの位置を更新
+	sprite_->SetPosition({20.0f, y});
+}
 
 void GameScene::Draw() {
+	// DirectXCommonインスタンスの取得
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+	// スプライト描画前処理
+	Sprite::PreDraw(dxCommon->GetCommandList());
 
-	// コマンドリストの取得
-	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
+	// スプライトインスタンスの描画処理
+	if (frameCount % 60 >= 30) {
+		sprite_->Draw();
+	}
 
-#pragma region 背景スプライト描画
-	Sprite::PreDraw(commandList);
+	// スプライト描画後処理
 	Sprite::PostDraw();
-	dxCommon_->ClearDepthBuffer();
-#pragma endregion
-
-#pragma region 3Dオブジェクト描画
-	Model2::PreDraw(commandList);
-
-	// モデル描画
-	model_->Draw(worldTransform_, *camera_, model2Handle_);
-
-	Model2::PostDraw();
-#pragma endregion
-
-#pragma region 前景スプライト描画
-	Sprite::PreDraw(commandList);
-	Sprite::PostDraw();
-#pragma endregion
 }
