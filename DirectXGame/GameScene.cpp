@@ -50,6 +50,8 @@ void GameScene::Draw() {
 
 	stage_.Draw();
 
+	sprite_->Draw();
+
 	// スプライト点滅の描画処理
 	if (frameCount % 60 >= 30) {
 		sprite2_->Draw();
