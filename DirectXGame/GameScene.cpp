@@ -24,9 +24,7 @@ void GameScene::Initialize() {
 void GameScene::Update() {
 
 	stage_.Update();
-
 	player_.Update();
-	camera_->Update();
 }
 
 void GameScene::Draw() {
@@ -38,11 +36,17 @@ void GameScene::Draw() {
 
 	stage_.Draw();
 
+	Sprite::PostDraw();
+
+	dxCommon->PreDraw();  
+
 	// 深度バッファクリア
 	dxCommon->ClearDepthBuffer();
 
 	// 3D描画
 	player_.Draw(*camera_);
+
+	dxCommon->PostDraw();  
 
 	Sprite::PostDraw();
 }

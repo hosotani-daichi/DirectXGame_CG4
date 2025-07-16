@@ -4,7 +4,7 @@ using namespace KamataEngine;
 
 void Player::Initialize() {
 
-	model_ = Model::CreateFromOBJ("player"); // 例: Resources/OBJ/player.obj が必要
+	model_ = Model::CreateFromOBJ("player"); 
 	worldTransform_.Initialize();
 	worldTransform_.translation_ = {0.0f, 0.0f, 0.0f};
 }
