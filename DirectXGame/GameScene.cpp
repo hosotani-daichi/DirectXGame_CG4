@@ -34,6 +34,7 @@ void GameScene::Update() {
 }
 
 void GameScene::Draw() {
+
 	// DirectXCommonインスタンスの取得
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 	// スプライト描画前処理

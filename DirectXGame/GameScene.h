@@ -2,25 +2,17 @@
 #include "KamataEngine.h"
 class GameScene {
 public:
-	/// コンストクラタ
-	/// </summary>
-	GameScene();
-	/// <summary>
-	/// デストラクタ
-	/// </summary>
-	~GameScene();
-	// 初期化
-	void Initialize();
-	// 更新
-	void Update();
 
-	// 描画
+	GameScene();
+	~GameScene();
+	void Initialize();
+	void Update();
 	void Draw();
 
 private:
+
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
-
 	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
 };
