@@ -20,6 +20,7 @@ private:
 	// スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
 	KamataEngine::Sprite* sprite2_ = nullptr;
+
 	KamataEngine::Camera* camera_ = nullptr;
 	Stage stage_;
 	Player player_;
