@@ -8,17 +8,21 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	// デストラクタ
 	delete sprite_;
+	delete sprite2_;
 }
 
 void GameScene::Initialize() {
 
-	//背景ステージの初期化
+	// 背景ステージの初期化
 	stage_.Initialize();
 
 	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("Title.png");
+	textureHandle2_ = TextureManager::Load("Space.png");
+
 	// スプライトインスタンスの生成
 	sprite_ = Sprite::Create(textureHandle_, {0, 0});
+	sprite2_ = Sprite::Create(textureHandle2_, {0, 0});
 }
 
 // メンバー変数に追加
@@ -34,6 +38,7 @@ void GameScene::Update() {
 	float y = 20 * sin(frameCount * 0.05f);
 	// スプライトの位置を更新
 	sprite_->SetPosition({20.0f, y});
+	sprite2_->SetPosition({10.0f, 70.0f});
 }
 
 void GameScene::Draw() {
@@ -47,7 +52,7 @@ void GameScene::Draw() {
 
 	// スプライト点滅の描画処理
 	if (frameCount % 60 >= 30) {
-		sprite_->Draw();
+		sprite2_->Draw();
 	}
 
 	// スプライト描画後処理
