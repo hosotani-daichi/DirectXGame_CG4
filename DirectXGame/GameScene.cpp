@@ -6,22 +6,13 @@ using namespace KamataEngine;
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
-	// デストラクタ
-	delete sprite_;
-	delete sprite2_;
+
 }
 
 void GameScene::Initialize() {
 
 	// 背景ステージの初期化
 	stage_.Initialize();
-
-	// ファイル名を指定してテクスチャを読み込む
-	textureHandle_ = TextureManager::Load("Title.png");
-	textureHandle2_ = TextureManager::Load("Space.png");
-	// スプライトインスタンスの生成
-	sprite_ = Sprite::Create(textureHandle_, {0, 0});
-	sprite2_ = Sprite::Create(textureHandle2_, {0, 0});
 
 	player_.Initialize();
 
@@ -36,12 +27,6 @@ void GameScene::Update() {
 
 	frameCount++;
 	stage_.Update();
-
-	// sin波で上下に揺れるY座標を作る（±20ピクセル範囲で動かす）
-	float y = 20 * sin(frameCount * 0.05f);
-	// スプライトの位置を更新
-	sprite_->SetPosition({20.0f, y});
-	sprite2_->SetPosition({10.0f, 70.0f});
 
 	player_.Update();
 	camera_->Update();
@@ -63,13 +48,6 @@ void GameScene::Draw() {
 	player_.Draw(*camera_);
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
-
-	sprite_->Draw();
-
-	// スプライト点滅の描画処理
-	if (frameCount % 60 >= 30) {
-		sprite2_->Draw();
-	}
 
 	Sprite::PostDraw();
 }
