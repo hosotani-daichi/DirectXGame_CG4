@@ -30,10 +30,30 @@ void GameScene::Update() {
 
 void GameScene::Draw() {
 
+	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
+
     Sprite::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 	stage_.Draw();
 	Sprite::PostDraw();
 
+	//深度バッファクリア
+	dxCommon->ClearDepthBuffer();
+
+	//3Dモデル描画前処理
+	Model::PreDraw(dxCommon->GetCommandList());
+
+	//ここに3Dモデルインスタンスの描画処理を記述する
 	player_.Draw(*camera_);
+
+	//3Dモデル描画後処理
+	Model::PostDraw();
+
+	//スプライト描画前処理
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	//ここに2Dスプライトの描画処理を記述する
+
+	//スプライト描画後処理
+	Sprite::PostDraw();
 
 }
