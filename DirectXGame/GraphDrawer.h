@@ -7,8 +7,7 @@
 class GraphDrawer {
 public:
 
-	void Initialize(uint32_t textureId, uint32_t redTextureId);
-	void Update(float hpRatio);
+	void Initialize(uint32_t textureId);
 	void SetGraphData(const std::vector<float>& data, const std::array<float, 4>& color);
 	void Draw();
 
@@ -21,7 +20,5 @@ private:
 	float baseX_ = 100.0f;  // 開始X位置
 	float baseY_ = 50.0f;  // 開始Y位置
 	float spacingX_ = 5.0f; // 点の間隔
-	float hpRatio_ = 1.0f; // HP残量
-	Sprite* greenBar_ = nullptr; // 緑のHPバー
-	Sprite* redBar_ = nullptr;   // 赤のHPバー
+	float hpRatio_ = 1.0f;  // HP割合
 };
