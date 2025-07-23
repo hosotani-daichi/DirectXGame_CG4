@@ -9,7 +9,7 @@ void Player::Initialize() {
 
 	model_ = Model::CreateFromOBJ("player");
 	worldTransform_.Initialize();
-	worldTransform_.translation_ = {0.0f, 0.0f, -30.0f};
+	worldTransform_.translation_ = {0.0f, 0.0f, -40.0f};
 
 	// Y軸を +90度回転して右向きにする
 	worldTransform_.rotation_.y = XMConvertToRadians(90.0f);
@@ -19,7 +19,7 @@ void Player::Update() {
 
 	Input* input = Input::GetInstance();
 
-	const float speed = 0.2f;
+	const float speed = 0.1f;
 
 	if (input->PushKey(DIK_A)) {
 		worldTransform_.translation_.x -= speed;
