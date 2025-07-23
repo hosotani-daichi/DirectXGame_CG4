@@ -9,6 +9,7 @@ public:
 
 	void Initialize(uint32_t textureId);
 	void SetGraphData(const std::vector<float>& data, const std::array<float, 4>& color);
+	void SetPosition(float x, float y);
 	void Draw();
 
 private:

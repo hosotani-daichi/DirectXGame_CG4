@@ -4,6 +4,7 @@
 using namespace KamataEngine;
 
 GameScene::GameScene() {}
+
 GameScene::~GameScene() {
 
 	delete camera_;
@@ -38,9 +39,22 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-
 	stage_.Update();
 	player_.Update();
+
+	// HP減少（時間経過によって）
+	hpRatio_ -= hpDecreaseSpeed_ * Time::GetDeltaTime();
+	if (hpRatio_ <= 0.0f) {
+		hpRatio_ = 1.0f; // ループして回復
+	}
+
+	// グラフ更新（1つの値のみ使用）
+	redGraph_.SetGraphData({1.0f - hpRatio_}, {1.0f, 0.0f, 0.0f, 1.0f}); // 減った分
+	greenGraph_.SetGraphData({hpRatio_}, {0.0f, 1.0f, 0.0f, 1.0f});      // 残ってるHP
+
+	// 位置を設定（赤と緑は重ねる）
+	greenGraph_.SetPosition(100.0f, 50.0f);
+	redGraph_.SetPosition(100.0f, 50.0f);
 }
 
 void GameScene::Draw() {

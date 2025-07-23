@@ -3,6 +3,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "GraphDrawer.h"
+#include "Time.h"
 
 class GameScene {
 public:
@@ -21,4 +22,6 @@ private:
 	GraphDrawer redGraph_;
 	GraphDrawer greenGraph_;
 	uint32_t whiteTex_ = 0;
+	float hpRatio_ = 1.0f;
+	float hpDecreaseSpeed_ = 0.3f;
 };
