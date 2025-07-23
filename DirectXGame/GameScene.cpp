@@ -21,7 +21,7 @@ void GameScene::Initialize() {
 	camera_ = new Camera();
 	camera_->Initialize();
 
-	whiteTex_ = TextureManager::Load("white.png");
+	whiteTex_ = TextureManager::Load("white1x1.png");
 
 	redGraph_.Initialize(whiteTex_);
 	greenGraph_.Initialize(whiteTex_);
