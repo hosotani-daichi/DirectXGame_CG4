@@ -8,26 +8,26 @@ void GraphDrawer::Initialize() {
 
 	for (int i = 0; i < maxHP; ++i) {
 
-		auto gauge = KamataEngine::Sprite::Create(textureHandle_, startPos);
-		gauge->SetSize(size);
+		auto graph = KamataEngine::Sprite::Create(textureHandle_, startPos);
+		graph->SetSize(size);
 
 		if (i == Red) {
-			gauge->SetColor(Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // 赤で表示
+			graph->SetColor(Vector4(1.0f, 0.0f, 0.0f, 1.0f)); // 赤で表示
 		} else if (i == Green) {
-			gauge->SetColor({0.24f, 0.70f, 0.44f, 1.0f}); // 緑で表示
+			graph->SetColor({0.24f, 0.70f, 0.44f, 1.0f}); // 緑で表示
 		}
-		GaugeSprite_.push_back(gauge);
+		GraphSprite_.push_back(graph);
 	}
 }
 
 void GraphDrawer::Update() {
 
-	for (int i = 0; i < GaugeSprite_.size(); ++i) {
+	for (int i = 0; i < GraphSprite_.size(); ++i) {
 
 		if (i == Green) {
-			GaugeSprite_[i]->SetSize(Vector2(GaugeSprite_[i]->GetSize().x - 1, GaugeSprite_[i]->GetSize().y));
-			if (GaugeSprite_[i]->GetSize().x < 0) {
-				GaugeSprite_[i]->SetSize(size);
+			GraphSprite_[i]->SetSize(Vector2(GraphSprite_[i]->GetSize().x - 1, GraphSprite_[i]->GetSize().y));
+			if (GraphSprite_[i]->GetSize().x < 0) {
+				GraphSprite_[i]->SetSize(size);
 			}
 		}
 	}
@@ -37,6 +37,6 @@ void GraphDrawer::Draw() {
 
 	// グラフ描画
 	for (int i = 0; i < maxHP; i++) {
-		GaugeSprite_[i]->Draw();
+		GraphSprite_[i]->Draw();
 	}
 }

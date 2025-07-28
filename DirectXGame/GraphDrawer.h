@@ -11,7 +11,7 @@ public:
 
 private:
 
-	std::vector<KamataEngine::Sprite*> GaugeSprite_;
+	std::vector<KamataEngine::Sprite*> GraphSprite_;
 	const int maxHP = 2;
 	const KamataEngine::Vector2 startPos = {50, 50};
 	const KamataEngine::Vector2 size = {150, 30};

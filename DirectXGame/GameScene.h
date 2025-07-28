@@ -16,5 +16,5 @@ private:
 	KamataEngine::Camera* camera_ = nullptr;
 	Stage stage_;
 	Player player_;
-	GraphDrawer*graph_ = nullptr;
+	GraphDrawer* graph_ = nullptr;
 };
