@@ -1,6 +1,7 @@
 #pragma once
 #include "GraphDrawer.h"
 #include "KamataEngine.h"
+#include "Number.h"
 #include "Player.h"
 #include "Stage.h"
 
@@ -17,4 +18,5 @@ private:
 	Stage stage_;
 	Player player_;
 	GraphDrawer* graph_ = nullptr;
+	Number* number_ = nullptr;
 };

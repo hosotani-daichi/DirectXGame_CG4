@@ -8,7 +8,6 @@ GameScene::~GameScene() {
 
 	delete camera_;
 	camera_ = nullptr;
-
 }
 
 void GameScene::Initialize() {
@@ -25,12 +24,17 @@ void GameScene::Initialize() {
 	// ゲージ
 	graph_ = new GraphDrawer();
 	graph_->Initialize();
+
+	// 数字
+	number_ = new Number();
+	number_->Initialize();
 }
 
 void GameScene::Update() {
 	stage_.Update();
 	player_.Update();
 	graph_->Update();
+	number_->Update();
 }
 
 void GameScene::Draw() {
@@ -61,6 +65,9 @@ void GameScene::Draw() {
 
 	// グラフ
 	graph_->Draw();
+
+	// 数字
+	number_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
