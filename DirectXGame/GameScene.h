@@ -1,13 +1,11 @@
 #pragma once
-#include "KamataEngine.h"
-#include "Stage.h"
-#include "Player.h"
 #include "GraphDrawer.h"
-#include "Time.h"
+#include "KamataEngine.h"
+#include "Player.h"
+#include "Stage.h"
 
 class GameScene {
 public:
-
 	GameScene();
 	~GameScene();
 	void Initialize();
@@ -15,13 +13,8 @@ public:
 	void Draw();
 
 private:
-
 	KamataEngine::Camera* camera_ = nullptr;
 	Stage stage_;
 	Player player_;
-	GraphDrawer redGraph_;
-	GraphDrawer greenGraph_;
-	uint32_t whiteTex_ = 0;
-	float hpRatio_ = 1.0f;
-	float hpDecreaseSpeed_ = 0.3f;
+	GraphDrawer*graph_ = nullptr;
 };

@@ -1,25 +1,21 @@
 #pragma once
 #include "KamataEngine.h"
-#include <array>
-#include <vector>
-#include <DirectXMath.h>
+#include <2d/Sprite.h>
 
 class GraphDrawer {
 public:
 
-	void Initialize(uint32_t textureId);
-	void SetGraphData(const std::vector<float>& data, const std::array<float, 4>& color);
-	void SetPosition(float x, float y);
+	void Initialize();
+	void Update();
 	void Draw();
 
 private:
 
-	static const int kMaxPoints = 128;
-	std::vector<KamataEngine::Sprite*> graphSprites_;
-	std::vector<float> yValues_;
-	DirectX::XMFLOAT4 graphColor_;
-	float baseX_ = 100.0f;  // 開始X位置
-	float baseY_ = 50.0f;  // 開始Y位置
-	float spacingX_ = 5.0f; // 点の間隔
-	float hpRatio_ = 1.0f;  // HP割合
+	std::vector<KamataEngine::Sprite*> GaugeSprite_;
+	const int maxHP = 2;
+	const KamataEngine::Vector2 startPos = {50, 50};
+	const KamataEngine::Vector2 size = {150, 30};
+	uint32_t textureHandle_;
+	int Red = 0; //赤
+	int Green = 1; //緑
 };
