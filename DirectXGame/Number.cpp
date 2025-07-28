@@ -35,7 +35,6 @@ void Number::Update() {
 	if (number_ >= 10000) {
 		number_ = 0;
 	}
-
 	SetNumber(number_);
 }
 
